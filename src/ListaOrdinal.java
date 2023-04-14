@@ -134,6 +134,7 @@ public class ListaOrdinal {
         }
     }
 
+    //ejercicio2
     public void eliminarRepetidos(int dato){
         Nodo actual= inicio;
         Nodo anterior= null;
@@ -153,5 +154,112 @@ public class ListaOrdinal {
             }
         }
     }
+
+    //ejercicio3
+
+    public void triplicar(){
+        Nodo actual= inicio;
+        while (actual != null) {
+            Nodo nuevo1 = new Nodo(actual.getDato(), actual.getSiguiente());
+            Nodo nuevo2 = new Nodo(actual.getDato(), nuevo1);
+            actual.setSiguiente(nuevo2);
+            actual=nuevo1.getSiguiente();
+        }
+    }
+
+    //ejercicio9
+
+    public boolean contiene2(int valor){
+        Nodo actual = inicio;
+        Nodo anterior = null;
+        while(actual!=null && actual.getDato()!=valor){
+            anterior=actual;
+            actual=actual.getSiguiente();
+        }
+        if(actual!=null){
+            if (actual != inicio) {
+                anterior.setSiguiente(actual.getSiguiente());
+                actual.setSiguiente(inicio);
+                inicio=actual;
+            }
+            return true;
+        }else return  false;
+    }
+
+    //ejercicio10
+
+    public void imagenEspecular(){
+        Nodo actual= inicio;
+        while(actual!=null){
+            Nodo nuevo= new Nodo(actual.getDato(), inicio);
+            inicio= nuevo;
+            actual=actual.getSiguiente();
+        }
+    }
+
+    //ejercicio11
+    public void insertarCeros(){
+        int suma = 0;
+        Nodo actual = inicio;
+        while(actual!=null){
+            suma+=actual.getDato();
+            actual=actual.getSiguiente();
+        }
+        actual= inicio;
+        while(actual!=null){
+            if(actual.getDato() ==suma){
+                Nodo nuevo = new Nodo(0, actual.getSiguiente());
+                actual.setSiguiente(nuevo);
+                actual=actual.getSiguiente();
+            }else actual=actual.getSiguiente();
+        }
+    }
+
+
+    //ejercicio12
+
+    public ListaOrdinal(int[] elementos){
+        if(elementos.length==0){
+            inicio= null;
+        }else{
+            inicio= new Nodo(elementos[0], null);
+            Nodo actual= inicio;
+            for(int i=1; i<elementos.length; i++){
+                Nodo nuevo = new Nodo(elementos[i],null);
+                actual.setSiguiente(nuevo);
+                actual=actual.getSiguiente();
+            }
+        }
+    }
+
+    //ejercicio13
+
+    public void insertarAContinuacion(int base, int nuevo){
+        Nodo actual= inicio;
+        while(actual!=null){
+            if(actual.getDato()!=base)
+                actual=actual.getSiguiente();
+            else{
+                Nodo nuevo2= new Nodo(nuevo, actual.getSiguiente());
+                actual.setSiguiente(nuevo2);
+                actual=nuevo2.getSiguiente();
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
